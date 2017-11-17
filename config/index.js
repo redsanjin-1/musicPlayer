@@ -38,13 +38,6 @@ module.exports = {
                     '^/getQQImg': ''
                 }
             },
-            '/discountlist': {
-                target: 'http://controller.xiaohuangdou.com/activity/discountlist',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/discountlist': ''
-                }
-            },
             '/getSingerList': {
                 target: 'https://c.y.qq.com/v8/fcg-bin/v8.fcg',
                 changeOrigin: true,
@@ -52,7 +45,6 @@ module.exports = {
                     '^/getSingerList': ''
                 }
             }
-
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README

@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import router from './router'
 import App from './App'
+import store from './store'
 import axios from 'axios'
 import jsonp from 'common/js/jsonp'
 import VueLazyload from "vue-lazyload"
@@ -23,6 +24,8 @@ Vue.use(VueLazyload, {
 
 Vue.config.productionTip = false
 
+axios.defaults.withCredentials = true
+
 Vue.prototype.$ajax = axios
 Vue.prototype.$jsonp = jsonp
 
@@ -32,6 +35,7 @@ new Vue({
     template: '<App/>',
     components: {
         App
-    }
+    },
+    store
 })
 // router.push('/axios')

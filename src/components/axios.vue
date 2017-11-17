@@ -5,9 +5,8 @@
       <!-- 轮播图 -->
       <slider v-if="slider.length" :config="config" :sliderData="slider" ref="slider"></slider>
       <!-- 歌手列表 -->
-      <singer @getSingerList="getSingerList"></singer>  
+      <singer @getSingerList="getSingerList"></singer>
     </div>
-    <div class="test">hhh</div>
   </scroll> 
 </template>
 
@@ -21,9 +20,9 @@ export default {
       items: [],
       slider: [],
       config: {
-        'loop': true,
-        'autoPlay': true,
-        'click': true
+        loop: true,
+        autoPlay: true,
+        click: true
       },
       singerList: [],
       checkLoaded: false
@@ -97,10 +96,5 @@ export default {
   width: 100vw;
   position: relative;
   overflow: hidden;
-}
-.test {
-  position: fixed;
-  top: 150px;
-  right: 0;
 }
 </style>

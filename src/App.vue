@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <div class="tab">
+    <!-- <div class="tab">
         <router-link class="tab-item" to="/goods" tag="div">商品</router-link>
         <router-link class="tab-item" to="/ratings">评论</router-link>
         <router-link class="tab-item" to="/seller">商家</router-link>
         <router-link class="tab-item" to="/axios">axios</router-link>
-    </div>
+    </div> -->
     <!--
         使用 keep-alive 内部组件 缓存 部分页面或者组件
       方法一 ：在 inex.js 中配置 meta 属性 ；

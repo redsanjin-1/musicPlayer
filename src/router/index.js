@@ -31,6 +31,12 @@ export default new Router({
         // meta: {
         //     keepAlive: true
         // }
+    }, {
+        path: '/singer/:id',
+        component: resolve => require(['@/components/singer-detail'], resolve),
+        meta: {
+            keepAlive: false
+        }
     }],
     // 定义组件切换时 css 样式的名称
     linkActiveClass: 'active'

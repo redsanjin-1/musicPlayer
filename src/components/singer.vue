@@ -1,9 +1,9 @@
 <template>
 <div>
   <ul class="singer">
-    <li v-for="group in singerList" >
+    <li v-for="group in singerList">
       <h2 class="singerListTitle">{{group.title}}</h2>
-      <div class="singerListItem" v-for="item in group.items">
+      <div class="singerListItem" v-for="item in group.items" @click="selectSinger(item)">
         <a :href="item.singerLink" class="singerPic">
           <img v-lazy="item.touxiang">
         </a>
@@ -27,6 +27,7 @@
 
 <script type="text/ecmascript-6">
 import Singer from "common/js/singer";
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -72,7 +73,8 @@ export default {
         if (index < 10) {
           map.hot.items.push(
             new Singer({
-              id: item.Fsinger_mid,
+              id: item.Fsinger_id,
+              mid: item.Fsinger_mid,
               name: item.Fsinger_name,
               nickName: item.Fother_name
             })
@@ -87,7 +89,8 @@ export default {
         }
         map[key].items.push(
           new Singer({
-            id: item.Fsinger_mid,
+            id: item.Fsinger_id,
+            mid: item.Fsinger_mid,
             name: item.Fsinger_name,
             nickName: item.Fother_name
           })
@@ -108,7 +111,17 @@ export default {
       });
 
       return hot.concat(ret);
-    }
+    },
+    selectSinger(singer) {
+      //  使用 vuex 的语法糖
+      this.setSinger(singer);
+      this.$router.push({
+        path: `/singer/${singer.id}`
+      });
+    },
+    ...mapMutations({
+      setSinger: "SET_SINGER" // 添加映射
+    })
   },
   mounted() {
     // 定义获取歌手列表回调函数
