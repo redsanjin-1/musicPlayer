@@ -8,8 +8,14 @@
 
 <script type="text/ecmascript-6">
 import { mapGetters } from "vuex";
+import { createSong } from "common/js/song";
 // import * as ck from "common/js/cookie";
 export default {
+  data() {
+    return {
+      songs: []
+    };
+  },
   computed: {
     ...mapGetters(["singer"])
   },
@@ -21,9 +27,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push({
-        path: "/"
-      });
+      this.$router.back();
     },
     // 获取歌手详情
     _getSingerDetail() {
@@ -49,7 +53,7 @@ export default {
       };
 
       this.$jsonp(url, data);
-    }
+    },
     // _setCookies() {
     //   ck.setCookie("RK", "JRGWRnX+H6", 1);
     //   ck.setCookie("pgv_pvi", "7641246720", 1);
@@ -67,13 +71,23 @@ export default {
     //   ck.setCookie("o_cookie", "0330411592", 1);
     //   ck.setCookie("ts_last", "y.qq.com/w/singer.html", 1);
     // }
+    _normalizeSong(list) {
+      let ret = [];
+      list.forEach(item => {
+        let { musicData } = item;
+        if (musicData.songid && musicData.albummid) {
+          ret.push(createSong(musicData));
+        }
+      });
+      return ret;
+    }
   },
   mounted() {
     // 定义获取歌手详情的回掉函数
     window.MusicJsonCallbacksinger_track = res => {
       this.$Progress.finish();
-      this.detail = res.data.list;
-      console.log(this.detail);
+      this.songs = this._normalizeSong(res.data.list);
+      console.log(this.songs);
     };
   }
 };
